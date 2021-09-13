@@ -1,10 +1,16 @@
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Player from './components/Player';
+import NotFound from './components/NotFound';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-          Learn React
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/:activeVideo" component={Player} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
