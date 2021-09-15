@@ -1,8 +1,13 @@
-const PlayList = () => {
+import StyledPlayList from "./styles/StyledPlayList";
+import PlayListHeader from "./PlayListHeader";
+import PlayListItems from "./PlayListItems";
+
+const PlayList = ({videos}) => {
   return (
-    <div>
-      PlayList
-    </div>
+    <StyledPlayList>
+      <PlayListHeader />
+      <PlayListItems videos={videos} />
+    </StyledPlayList>
   )
 }
 

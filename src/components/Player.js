@@ -22,7 +22,7 @@ const Player = () => {
     <>
       <StyledPlayerWrapper>
         <Video />
-        <PlayList />
+        <PlayList videos={state.videos} />
       </StyledPlayerWrapper>
     </>
   )
