@@ -4,6 +4,7 @@ import PlayList from './PlayList';
 import Video from './Video';
 
 import StyledPlayerWrapper from './styles/StyledPlayerWrapper';
+import StyledHeader from './styles/StyledHeader';
 
 const Player = () => {
   const [state, setstate] = useState({
@@ -20,10 +21,15 @@ const Player = () => {
 
   return (
     <>
-      <StyledPlayerWrapper>
-        <Video />
-        <PlayList videos={state.videos} />
-      </StyledPlayerWrapper>
+      <StyledHeader>
+        <h1>React Video Player</h1>
+      </StyledHeader>
+      {state.videos && (
+        <StyledPlayerWrapper>
+          <Video />
+          <PlayList videos={state.videos} />
+        </StyledPlayerWrapper>
+      )}
     </>
   )
 }

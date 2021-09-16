@@ -6,6 +6,7 @@ const StyledPlayListHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  font-size: 1.6em;
 `;
 
 export default StyledPlayListHeader;

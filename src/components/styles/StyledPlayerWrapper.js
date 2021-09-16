@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledPlayerWrapper = styled.div`
+const StyledPlayerWrapper = styled.main`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
