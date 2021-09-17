@@ -9,10 +9,11 @@ const StyledPlayListItem = styled.li`
   margin: 0 0 10px 0;
   font-size: 1.2em;
   cursor: pointer;
+  color: ${props => props.theme.color};
 
   .video-item-num {
     padding-right: 20px;
-    border-right: 2px solid black;
+    border-right: 2px solid #565656;
   }
 
   .video-item-title {
@@ -22,6 +23,9 @@ const StyledPlayListItem = styled.li`
 
   .video-item-duration {
     padding: 0px 10px;
+    background: ${props => props.theme.color};
+    color: ${props => props.theme.bgColor};
+    border-radius: 5px;
   }
 `;
 

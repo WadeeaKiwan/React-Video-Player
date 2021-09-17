@@ -1,10 +1,10 @@
 import StyledPlayListHeader from "./styles/StyledPlayListHeader";
 
-const PlayListHeader = () => {
+const PlayListHeader = ({activeVideo, total}) => {
   return (
     <StyledPlayListHeader>
-      <p>Title</p>
-      <div>1 / 12</div>
+      <h2>{activeVideo.title}</h2>
+      <div>{activeVideo.num} / {total}</div>
     </StyledPlayListHeader>
   )
 }

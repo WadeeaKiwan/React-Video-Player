@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    margin: 0;
+    margin: 0 auto;
     font-size: 14px;
     font-family: 'Hind', sans-serif;
   }

@@ -1,11 +1,13 @@
 import StyledPlayList from "./styles/StyledPlayList";
+import NightMode from "./NightMode";
 import PlayListHeader from "./PlayListHeader";
 import PlayListItems from "./PlayListItems";
 
-const PlayList = ({videos}) => {
+const PlayList = ({videos, nightModeHandler, nightMode, activeVideo}) => {
   return (
     <StyledPlayList>
-      <PlayListHeader />
+      <NightMode nightModeHandler={nightModeHandler} nightMode={nightMode} />
+      <PlayListHeader activeVideo={activeVideo} total={videos.length}/>
       <PlayListItems videos={videos} />
     </StyledPlayList>
   )
