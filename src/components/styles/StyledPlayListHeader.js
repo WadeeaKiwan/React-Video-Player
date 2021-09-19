@@ -12,10 +12,11 @@ const StyledPlayListHeader = styled.div`
 
   div {
     background: #353535;
-    padding: 5px;
+    padding: 4px 5px 0 5px;
     border-radius: 5px;
     width: 15%;
     text-align: center;
+    font-size: 1.3em;
   }
 `;
 

@@ -1,15 +1,23 @@
 import styled from "styled-components";
 
 const StyledPlayListItem = styled.li`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  margin: 0 0 10px 0;
-  font-size: 1.2em;
-  cursor: pointer;
-  color: ${props => props.theme.color};
+  list-style-type: none;
+
+  a {
+      display: block;
+      text-decoration: none;
+      color: ${props => props.theme.color};
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 10px;
+      margin: 0 0 10px 0;
+      font-size: 1.2em;
+      cursor: pointer;
+      border: ${props => props.active ? props.theme.borderItemActive : props.theme.borderItemInactive};
+      border-radius: ${props => props.active ? "5px" : "0"};
+    }
 
   .video-item-num {
     padding-right: 20px;
@@ -22,7 +30,7 @@ const StyledPlayListItem = styled.li`
   }
 
   .video-item-duration {
-    padding: 0px 10px;
+    padding: 2px 10px 0 10px;
     background: ${props => props.theme.color};
     color: ${props => props.theme.bgColor};
     border-radius: 5px;

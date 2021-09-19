@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory, useRouteMatch } from 'react-router';
 import videosList from '../db/videosList';
 import PlayList from './PlayList';
 import Video from './Video';
@@ -18,10 +19,42 @@ const Player = () => {
 
   console.log(state);
 
+  const { videoId } = useRouteMatch().params;
+  const history = useHistory();
+
   useEffect(() => {
     const json = JSON.stringify({ ...state });
     localStorage.setItem(`${state.playListId}`, json);
   }, [state]);
+
+  useEffect(() => {
+    if (videoId) {
+      const newActiveVideo = state.videos.find(video => {
+        return video.id === videoId;
+      });
+
+      if (newActiveVideo) {
+        setState(state => ({
+          ...state,
+          activeVideo: newActiveVideo
+        }));
+      } else {
+        history.push({
+          pathname: `/${state.activeVideo.id}`
+        });
+      }
+    } else {
+      history.push({
+        pathname: `/${state.activeVideo.id}`
+      });
+    }
+
+  }, [
+    videoId,
+    state.videos,
+    history,
+    state.activeVideo.id
+  ]);
 
   const nightModeHandler = () => {
     setState(state => ({

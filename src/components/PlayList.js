@@ -8,7 +8,7 @@ const PlayList = ({videos, nightModeHandler, nightMode, activeVideo}) => {
     <StyledPlayList>
       <NightMode nightModeHandler={nightModeHandler} nightMode={nightMode} />
       <PlayListHeader activeVideo={activeVideo} total={videos.length}/>
-      <PlayListItems videos={videos} />
+      <PlayListItems videos={videos} activeVideo={activeVideo} />
     </StyledPlayList>
   )
 }

@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/:activeVideo" component={Player} />
+        <Route exact path="/:videoId?" component={Player} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
