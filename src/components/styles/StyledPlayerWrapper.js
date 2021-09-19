@@ -5,7 +5,7 @@ const StyledPlayerWrapper = styled.main`
   display: flex;
   flex-direction: column;
   background: ${props => props.theme.bgColor};
-  transition: all 0.5s ease;
+  transition: background-color 0.5s ease-in-out;
 
   @media screen and (min-width: 1200px) {
     flex-direction: row;

@@ -17,6 +17,7 @@ const StyledPlayListItem = styled.li`
       cursor: pointer;
       border: ${props => props.active ? props.theme.borderItemActive : props.theme.borderItemInactive};
       border-radius: ${props => props.active ? "5px" : "0"};
+      transition: border 0.5s ease-in-out;
     }
 
   .video-item-num {
