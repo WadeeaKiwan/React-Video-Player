@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useRouteMatch } from 'react-router';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import videosList from '../db/videosList';
 import PlayList from './PlayList';
 import Video from './Video';
@@ -10,17 +10,22 @@ import StyledPlayerWrapper from './styles/StyledPlayerWrapper';
 import StyledHeader from './styles/StyledHeader';
 
 const Player = () => {
+  const savedState = JSON.parse(localStorage.getItem(`${videosList.playlistId}`));
+
   const [state, setState] = useState({
-    videos: videosList.videos,
-    playListId: videosList.playlistId,
-    nightMode: false,
-    activeVideo: videosList.videos[0]
+    videos: savedState ? savedState.videos : videosList.videos,
+    playListId: savedState ? savedState.playListId : videosList.playlistId,
+    nightMode: savedState ? savedState.nightMode : false,
+    activeVideo: savedState ? savedState.activeVideo : videosList.videos[0],
+    autoPlay: savedState ? savedState.autoPlay : false
   });
 
   console.log(state);
 
   const { videoId } = useRouteMatch().params;
   const history = useHistory();
+  const location = useLocation();
+  console.log({ location });
 
   useEffect(() => {
     const json = JSON.stringify({ ...state });
@@ -36,16 +41,19 @@ const Player = () => {
       if (newActiveVideo) {
         setState(state => ({
           ...state,
-          activeVideo: newActiveVideo
+          activeVideo: newActiveVideo,
+          autoPlay: location.autoPlay
         }));
       } else {
         history.push({
-          pathname: `/${state.activeVideo.id}`
+          pathname: `/${state.activeVideo.id}`,
+          autoPlay: false
         });
       }
     } else {
       history.push({
-        pathname: `/${state.activeVideo.id}`
+        pathname: `/${state.activeVideo.id}`,
+        autoPlay: false
       });
     }
 
@@ -53,7 +61,8 @@ const Player = () => {
     videoId,
     state.videos,
     history,
-    state.activeVideo.id
+    state.activeVideo.id,
+    location.autoPlay
   ]);
 
   const nightModeHandler = () => {
@@ -72,6 +81,7 @@ const Player = () => {
         <StyledPlayerWrapper>
           <Video
             activeVideo={state.activeVideo}
+            autoPlay={state.autoPlay}
           />
           <PlayList
             videos={state.videos}
