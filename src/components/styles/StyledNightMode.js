@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 const StyledNightMode = styled.div`
   font-size: 1.1em;
-  padding: 20px;
+  padding: 25px 10px 0 10px;
   margin: 0;
-  color: ${props => props.theme.color};
-  border-top: 2px solid #565656;
+  color: ${(props) => props.theme.color};
 
   /* CSS taken from https://www.w3schools.com/howto/howto_css_switch.asp */
   /* The switch - the box around the slider */

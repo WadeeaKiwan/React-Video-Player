@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
-import videosList from '../db/videosList';
-import PlayList from './PlayList';
-import Video from './Video';
+import { useEffect, useState } from "react";
+import { useHistory, useLocation, useRouteMatch } from "react-router";
+import videosList from "../db/videosList";
+import PlayList from "./PlayList";
+import Video from "./Video";
 
-import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from './styles/Themes';
-import StyledPlayerWrapper from './styles/StyledPlayerWrapper';
-import StyledHeader from './styles/StyledHeader';
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./styles/Themes";
+import StyledPlayerWrapper from "./styles/StyledPlayerWrapper";
+import StyledHeader from "./styles/StyledHeader";
+import NightMode from "./NightMode";
 
 const Player = () => {
   const savedState = JSON.parse(localStorage.getItem(`${videosList.playlistId}`));
@@ -34,12 +35,12 @@ const Player = () => {
 
   useEffect(() => {
     if (videoId) {
-      const newActiveVideo = state.videos.find(video => {
+      const newActiveVideo = state.videos.find((video) => {
         return video.id === videoId;
       });
 
       if (newActiveVideo) {
-        setState(state => ({
+        setState((state) => ({
           ...state,
           activeVideo: newActiveVideo,
           autoPlay: location.autoPlay
@@ -56,17 +57,10 @@ const Player = () => {
         autoPlay: false
       });
     }
-
-  }, [
-    videoId,
-    state.videos,
-    history,
-    state.activeVideo.id,
-    location.autoPlay
-  ]);
+  }, [videoId, state.videos, history, state.activeVideo.id, location.autoPlay]);
 
   const nightModeHandler = () => {
-    setState(state => ({
+    setState((state) => ({
       ...state,
       nightMode: !state.nightMode
     }));
@@ -76,23 +70,16 @@ const Player = () => {
     <ThemeProvider theme={state.nightMode ? darkTheme : lightTheme}>
       <StyledHeader>
         <h1>React Video Player</h1>
+        <NightMode nightModeHandler={nightModeHandler} nightMode={state.nightMode} />
       </StyledHeader>
       {state.videos && (
         <StyledPlayerWrapper>
-          <Video
-            activeVideo={state.activeVideo}
-            autoPlay={state.autoPlay}
-          />
-          <PlayList
-            videos={state.videos}
-            nightModeHandler={nightModeHandler}
-            nightMode={state.nightMode}
-            activeVideo={state.activeVideo}
-          />
+          <Video activeVideo={state.activeVideo} autoPlay={state.autoPlay} />
+          <PlayList videos={state.videos} activeVideo={state.activeVideo} />
         </StyledPlayerWrapper>
       )}
     </ThemeProvider>
-  )
-}
+  );
+};
 
 export default Player;
