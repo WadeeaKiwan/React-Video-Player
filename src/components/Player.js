@@ -69,7 +69,7 @@ const Player = () => {
   return (
     <ThemeProvider theme={state.nightMode ? darkTheme : lightTheme}>
       <StyledHeader>
-        <h1>React Video Player</h1>
+        <h1>ReactPlayer</h1>
         <NightMode nightModeHandler={nightModeHandler} nightMode={state.nightMode} />
       </StyledHeader>
       {state.videos && (
